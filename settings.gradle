@@ -1,0 +1,3 @@
+rootProject.name = "gekom"
+include "gekom-core"
+
