@@ -1,4 +1,10 @@
 package fr.cvlaminck.gekom.api.type
 
-class TypeDescriptor<T> {
+import java.lang.reflect.Type
+
+class TypeDescriptor<T> (
+        t: Type
+) {
+
+
 }
