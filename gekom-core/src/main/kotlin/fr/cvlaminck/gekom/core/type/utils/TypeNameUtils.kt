@@ -7,14 +7,14 @@ import java.lang.reflect.WildcardType
 import java.util.*
 
 /**
- * Provide a method returning the type name compatible with JDK 1.6.
+ * Provide a method returning the type information (including generic information) compatible with JDK 1.6.
  */
 internal object TypeNameUtils {
 
     private val ARRAY_OF_OBJECT_CLASS = arrayOf(Object::class.java)
 
     /**
-     * Returns the name of the [type].
+     * Returns a string describing this type, including information about any type parameters.
      */
     fun getTypeName(type: Type) = when (type) {
         is Class<*> -> getClassName(type)
