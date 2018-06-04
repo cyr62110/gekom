@@ -16,34 +16,34 @@ public class JavaTypeTest {
         ParameterizedType parameterizedType;
 
         field = DummyClass.class.getDeclaredField("concreteVar");
-        assertEquals("java.lang.Integer", field.getGenericType().getTypeName());
+        assertEquals("class java.lang.Integer", field.getGenericType().toString());
         assertEquals("java.lang.Class", field.getGenericType().getClass().getName());
 
         field = DummyClass.class.getDeclaredField("concreteArray");
-        assertEquals("java.lang.Integer[]", field.getGenericType().getTypeName());
+        assertEquals("java.lang.Integer[]", field.getGenericType().toString());
         assertEquals("java.lang.Class", field.getGenericType().getClass().getName());
 
         field = DummyClass.class.getDeclaredField("concreteCollection");
-        assertEquals("java.util.Collection<java.lang.Integer>", field.getGenericType().getTypeName());
+        assertEquals("java.util.Collection<java.lang.Integer>", field.getGenericType().toString());
         assertTrue(ParameterizedType.class.isAssignableFrom(field.getGenericType().getClass()));
         parameterizedType = (ParameterizedType) field.getGenericType();
         assertEquals(1, parameterizedType.getActualTypeArguments().length);
-        assertEquals("java.lang.Integer", parameterizedType.getActualTypeArguments()[0].getTypeName());
+        assertEquals("java.lang.Integer", parameterizedType.getActualTypeArguments()[0].toString());
 
         field = DummyClass.class.getDeclaredField("genericCollection");
-        assertEquals("java.util.Collection<?>", field.getGenericType().getTypeName());
+        assertEquals("java.util.Collection<?>", field.getGenericType().toString());
         assertTrue(ParameterizedType.class.isAssignableFrom(field.getGenericType().getClass()));
         parameterizedType = (ParameterizedType) field.getGenericType();
         assertEquals(1, parameterizedType.getActualTypeArguments().length);
-        assertEquals("?", parameterizedType.getActualTypeArguments()[0].getTypeName());
+        assertEquals("?", parameterizedType.getActualTypeArguments()[0].toString());
         assertTrue(WildcardType.class.isAssignableFrom(parameterizedType.getActualTypeArguments()[0].getClass()));
 
         field = DummyClass.class.getDeclaredField("genericExtendsCollection");
-        assertEquals("java.util.Collection<? extends java.lang.Integer>", field.getGenericType().getTypeName());
+        assertEquals("java.util.Collection<? extends java.lang.Integer>", field.getGenericType().toString());
         assertTrue(ParameterizedType.class.isAssignableFrom(field.getGenericType().getClass()));
 
         field = DummyClass.class.getDeclaredField("genericSuperCollection");
-        assertEquals("java.util.Collection<? super java.lang.Integer>", field.getGenericType().getTypeName());
+        assertEquals("java.util.Collection<? super java.lang.Integer>", field.getGenericType().toString());
         assertTrue(ParameterizedType.class.isAssignableFrom(field.getGenericType().getClass()));
     }
 

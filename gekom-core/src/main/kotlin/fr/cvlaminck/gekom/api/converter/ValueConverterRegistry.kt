@@ -14,7 +14,7 @@ interface ValueConverterRegistry {
      * @param outputType
      * @return a converter supporting the conversion of [inputType] into the [outputType].
      */
-    fun getConverter(inputType: TypeDescriptor<Any>, outputType: TypeDescriptor<Any>): ValueConverter
+    fun getConverter(inputType: TypeDescriptor, outputType: TypeDescriptor): ValueConverter
 
     /**
      * Returns a converter of the provided [type].
