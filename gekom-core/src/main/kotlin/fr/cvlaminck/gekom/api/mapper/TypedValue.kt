@@ -1,6 +1,6 @@
 package fr.cvlaminck.gekom.api.mapper
 
-import fr.cvlaminck.gekom.api.type.TypeDescriptor
+import fr.cvlaminck.gekom.api.reflect.TypeDescriptor
 
 /**
  *

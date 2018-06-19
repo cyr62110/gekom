@@ -1,8 +1,9 @@
 package fr.cvlaminck.gekom.api.type
 
+import fr.cvlaminck.gekom.api.reflect.TypeDescriptor
+import fr.cvlaminck.gekom.api.reflect.TypeDescriptorFactory
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import java.lang.reflect.Type
 
 internal class TypeDescriptorTest {
 
@@ -17,7 +18,7 @@ internal class TypeDescriptorTest {
 
     private fun getAttributeType(attribute: String): TypeDescriptor {
         val field = DummyClass::class.java.getDeclaredField(attribute)
-        return TypeDescriptor.ofField(field)
+        return TypeDescriptorFactory().ofField(field)
     }
 
     @Suppress("unused")

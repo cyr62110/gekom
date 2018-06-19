@@ -1,6 +1,6 @@
 package fr.cvlaminck.gekom.core.type
 
-import fr.cvlaminck.gekom.core.type.utils.TypeNameUtils
+import fr.cvlaminck.gekom.core.reflect.utils.TypeNameUtils
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*

@@ -1,4 +1,4 @@
-package fr.cvlaminck.gekom.core.type.utils
+package fr.cvlaminck.gekom.core.reflect.utils
 
 import java.lang.reflect.GenericArrayType
 import java.lang.reflect.ParameterizedType
