@@ -22,7 +22,7 @@ public class JavaTypeTest {
         assertEquals("java.lang.Class", field.getGenericType().getClass().getName());
 
         field = DummyClass.class.getDeclaredField("concreteArray");
-        assertEquals("java.lang.Integer[]", field.getGenericType().toString());
+        assertEquals("class [Ljava.lang.Integer;", field.getGenericType().toString());
         assertEquals("java.lang.Class", field.getGenericType().getClass().getName());
 
         field = DummyClass.class.getDeclaredField("concreteCollection");
@@ -30,7 +30,7 @@ public class JavaTypeTest {
         assertTrue(ParameterizedType.class.isAssignableFrom(field.getGenericType().getClass()));
         parameterizedType = (ParameterizedType) field.getGenericType();
         assertEquals(1, parameterizedType.getActualTypeArguments().length);
-        assertEquals("java.lang.Integer", parameterizedType.getActualTypeArguments()[0].toString());
+        assertEquals("class java.lang.Integer", parameterizedType.getActualTypeArguments()[0].toString());
 
         field = DummyClass.class.getDeclaredField("genericCollection");
         assertEquals("java.util.Collection<?>", field.getGenericType().toString());

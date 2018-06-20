@@ -23,7 +23,7 @@ class FakeWildcardType(
 ) : WildcardType {
 
     init {
-        if (lowerBound != null && upperBound == Object::class.java) {
+        if (lowerBound != null && upperBound != Object::class.java) {
             throw IllegalArgumentException("As JRE 6 to 11 specifications, if an lower bound is specified, the upper bound will always be Object.")
         }
     }

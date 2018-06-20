@@ -1,6 +1,6 @@
 package fr.cvlaminck.gekom.reflect
 
-import fr.cvlaminck.gekom.core.reflect.FakeParameterizedType
+import fr.cvlaminck.gekom.reflect.type.FakeParameterizedType
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType

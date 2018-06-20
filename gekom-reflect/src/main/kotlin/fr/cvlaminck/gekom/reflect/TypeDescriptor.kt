@@ -1,7 +1,7 @@
 package fr.cvlaminck.gekom.reflect
 
-import fr.cvlaminck.gekom.core.reflect.utils.TypeNameUtils
-import fr.cvlaminck.gekom.core.reflect.utils.TypeUtils
+import fr.cvlaminck.gekom.reflect.util.TypeNameUtils
+import fr.cvlaminck.gekom.reflect.util.TypeUtils
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import java.lang.reflect.WildcardType
