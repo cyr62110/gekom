@@ -3,7 +3,7 @@ package fr.cvlaminck.gekom.api.type
 /**
  *
  */
-interface TypeConstructor<out T: Any> {
+interface TypeConstructor<out T : Any> {
 
     /**
      * Returns the ordered list of properties that must be passed to the constructor

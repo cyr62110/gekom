@@ -3,7 +3,7 @@ package fr.cvlaminck.gekom.core.mapper
 import fr.cvlaminck.gekom.api.converter.ValueConverterRegistry
 import fr.cvlaminck.gekom.api.mapper.Mapper
 
-class AbstractFromMapper<Input, Output> (
+class AbstractFromMapper<Input, Output>(
         converterRegistry: ValueConverterRegistry
 ) : Mapper<Input, Output> {
 

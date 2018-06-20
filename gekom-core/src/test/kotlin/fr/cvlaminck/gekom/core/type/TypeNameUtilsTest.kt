@@ -1,9 +1,8 @@
 package fr.cvlaminck.gekom.core.type
 
 import fr.cvlaminck.gekom.core.reflect.utils.TypeNameUtils
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import java.lang.reflect.Type
 
 internal class TypeNameUtilsTest {

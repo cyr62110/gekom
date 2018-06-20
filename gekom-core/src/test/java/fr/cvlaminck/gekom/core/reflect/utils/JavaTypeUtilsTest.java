@@ -22,9 +22,9 @@ public class JavaTypeUtilsTest {
 
         assertEquals(Collection.class, TypeUtils.INSTANCE.getRawType(getAttributeType("concreteCollection")));
 
-        assertEquals(Object.class, TypeUtils.INSTANCE.getRawType(((ParameterizedType)getAttributeType("genericCollection")).getActualTypeArguments()[0]));
-        assertEquals(Integer.class, TypeUtils.INSTANCE.getRawType(((ParameterizedType)getAttributeType("genericExtendsCollection")).getActualTypeArguments()[0]));
-        assertEquals(Object.class, TypeUtils.INSTANCE.getRawType(((ParameterizedType)getAttributeType("genericSuperCollection")).getActualTypeArguments()[0]));
+        assertEquals(Object.class, TypeUtils.INSTANCE.getRawType(((ParameterizedType) getAttributeType("genericCollection")).getActualTypeArguments()[0]));
+        assertEquals(Integer.class, TypeUtils.INSTANCE.getRawType(((ParameterizedType) getAttributeType("genericExtendsCollection")).getActualTypeArguments()[0]));
+        assertEquals(Object.class, TypeUtils.INSTANCE.getRawType(((ParameterizedType) getAttributeType("genericSuperCollection")).getActualTypeArguments()[0]));
     }
 
     @Test
@@ -47,11 +47,11 @@ public class JavaTypeUtilsTest {
 
         // Wildcard Type
         assertTrue(TypeUtils.INSTANCE.equals(
-                ((ParameterizedType)getAttributeType("genericExtendsCollection")).getActualTypeArguments()[0],
-                ((ParameterizedType)getAttributeType("genericExtendsMap")).getActualTypeArguments()[0]));
+                ((ParameterizedType) getAttributeType("genericExtendsCollection")).getActualTypeArguments()[0],
+                ((ParameterizedType) getAttributeType("genericExtendsMap")).getActualTypeArguments()[0]));
         assertFalse(TypeUtils.INSTANCE.equals(
-                ((ParameterizedType)getAttributeType("genericCollection")).getActualTypeArguments()[0],
-                ((ParameterizedType)getAttributeType("genericExtendsCollection")).getActualTypeArguments()[0]));
+                ((ParameterizedType) getAttributeType("genericCollection")).getActualTypeArguments()[0],
+                ((ParameterizedType) getAttributeType("genericExtendsCollection")).getActualTypeArguments()[0]));
     }
 
     private Type getAttributeType(String attribute) throws NoSuchFieldException {

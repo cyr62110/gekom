@@ -6,4 +6,4 @@ package fr.cvlaminck.gekom.exception
 class GekomException(
         message: String,
         cause: Throwable
-): RuntimeException(message, cause)
+) : RuntimeException(message, cause)

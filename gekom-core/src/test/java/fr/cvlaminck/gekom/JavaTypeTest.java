@@ -2,7 +2,9 @@ package fr.cvlaminck.gekom;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.WildcardType;
 import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

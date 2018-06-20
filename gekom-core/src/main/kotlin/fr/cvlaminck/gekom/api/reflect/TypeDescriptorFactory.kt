@@ -34,8 +34,7 @@ class TypeDescriptorFactory {
      * @since 1.0.0
      */
     @Suppress("UNCHECKED_CAST")
-    fun ofParameterizedType(ownerType: Type?, rawType: Type, vararg actualTypeArguments: Type)
-        = TypeDescriptor(FakeParameterizedType(ownerType, rawType, actualTypeArguments as Array<Type>))
+    fun ofParameterizedType(ownerType: Type?, rawType: Type, vararg actualTypeArguments: Type) = TypeDescriptor(FakeParameterizedType(ownerType, rawType, actualTypeArguments as Array<Type>))
 
     /**
      * Return a list of [TypeDescriptor] describing all the types of the type arguments for the provided [type].

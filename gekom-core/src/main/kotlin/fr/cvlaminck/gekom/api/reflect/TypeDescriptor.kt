@@ -2,7 +2,9 @@ package fr.cvlaminck.gekom.api.reflect
 
 import fr.cvlaminck.gekom.core.reflect.utils.TypeNameUtils
 import fr.cvlaminck.gekom.core.reflect.utils.TypeUtils
-import java.lang.reflect.*
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
+import java.lang.reflect.WildcardType
 
 class TypeDescriptor internal constructor(
         val type: Type
