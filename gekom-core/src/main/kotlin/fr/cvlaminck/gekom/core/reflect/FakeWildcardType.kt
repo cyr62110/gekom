@@ -1,9 +1,9 @@
 package fr.cvlaminck.gekom.core.reflect
 
+import fr.cvlaminck.gekom.core.reflect.utils.TypeNameUtils
 import fr.cvlaminck.gekom.core.reflect.utils.TypeUtils
 import java.lang.reflect.Type
 import java.lang.reflect.WildcardType
-import java.util.*
 
 /**
  * An implementation of [WildcardType].
@@ -44,4 +44,6 @@ class FakeWildcardType(
         result = result xor if (lowerBound != null) 31 + lowerBound.hashCode() else 1
         return result
     }
+
+    override fun toString(): String = TypeNameUtils.getTypeName(this)
 }
