@@ -4,7 +4,6 @@ import fr.cvlaminck.gekom.core.reflect.utils.TypeNameUtils
 import fr.cvlaminck.gekom.core.reflect.utils.TypeUtils
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
-import java.lang.reflect.WildcardType
 import java.util.*
 
 /**
@@ -34,10 +33,6 @@ class FakeParameterizedType(
         return TypeUtils.equals(this, other)
     }
 
-    override fun hashCode(): Int {
-        var result = ownerType?.hashCode() ?: 0
-        result = 31 * result + rawType.hashCode()
-        result = 31 * result + Arrays.hashCode(actualTypeArguments)
-        return result
-    }
+    override fun hashCode(): Int =
+            TypeUtils.hashCode(ownerType) xor TypeUtils.hashCode(rawType) xor Arrays.hashCode(actualTypeArguments)
 }
