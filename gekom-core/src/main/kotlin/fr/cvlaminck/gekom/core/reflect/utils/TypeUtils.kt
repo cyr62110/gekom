@@ -5,10 +5,18 @@ import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import java.lang.reflect.WildcardType
 
+/**
+ * Utility class providing some tools to manipulate [Type] more easily.
+ *
+ * @since 1.0.0
+ */
 object TypeUtils {
 
     /**
-    Returns the [Class] object representing the class or interface that declared this type.
+     * Returns the [Class] object representing the class or interface that declared this type.
+     *
+     * @return Raw class of provided [type].
+     * @since 1.0.0
      */
     fun getRawType(type: Type): Class<*> = when (type) {
         is Class<*> -> type
@@ -24,6 +32,7 @@ object TypeUtils {
      * @param t1 First type to compare.
      * @param t2 Second type to compare.
      * @return true if [t1] and [t2] are equals.
+     * @since 1.0.0
      */
     fun equals(t1: Type?, t2: Type?): Boolean {
         if (t1 === t2) {
@@ -48,6 +57,8 @@ object TypeUtils {
      *
      * @param a1 First array of [Type] to compare.
      * @param a2 Second array of [Type] to compare.
+     * @return true if [a1] and [a2] are equals, false otherwise.
+     * @since 1.0.0
      */
     fun arrayEquals(a1: Array<Type>, a2: Array<Type>): Boolean {
         if (a1 === a2) {
@@ -94,6 +105,15 @@ object TypeUtils {
     }
 
     /**
+     * Returns the hashCode of the provided [type] or 0 0 if [type] is null.
+     *
+     * @param type Type from which we want the hashCode.
+     * @return Hash code of the provided [type] or 0 if [type] is null.
+     * @since 1.0.0
+     */
+    fun hashCode(type: Type?) = if (type != null) type.hashCode() else 0
+
+    /**
      * Returns true if a value of the [from] type can be assigned to a
      * - for classes, it will check if [to] is a superclass or a superinterface of [from].
      * - for parameterized type, it will check if raw types and parameters types are assignable to each other.
@@ -101,6 +121,9 @@ object TypeUtils {
      * - for wildcard type,
      *
      * The actual implementation differs from the one of JDK to take into account generic type information.
+     *
+     * @return true if [to] type is assignable from [from] type, false otherwise.
+     * @since 1.0.0
      */
     fun isAssignableFrom(to: Type, from: Type): Boolean {
         if (to == from) {
