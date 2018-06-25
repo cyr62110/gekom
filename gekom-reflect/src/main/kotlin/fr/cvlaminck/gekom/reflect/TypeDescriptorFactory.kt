@@ -1,6 +1,7 @@
 package fr.cvlaminck.gekom.reflect
 
 import fr.cvlaminck.gekom.reflect.type.FakeParameterizedType
+import fr.cvlaminck.gekom.reflect.type.FakeWildcardType
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
@@ -35,6 +36,17 @@ class TypeDescriptorFactory {
      */
     @Suppress("UNCHECKED_CAST")
     fun ofParameterizedType(ownerType: Type?, rawType: Type, vararg actualTypeArguments: Type) = TypeDescriptor(FakeParameterizedType(ownerType, rawType, actualTypeArguments as Array<Type>))
+
+    /**
+     * Return a [TypeDescriptor] describing a wildcard type with provided [lowerBound] and [upperBound].
+     *
+     * This implementation only supports wildcard type that are legitimated in JRE 6 to 11 specifications, which means:
+     * - only one upper bound and one lower bound
+     * - if a lower bound is defined, then the upper bound is Object.
+     *
+     * @since 1.0.0
+     */
+    fun ofWildcardType(upperBound: Type, lowerBound: Type? = null) = TypeDescriptor(FakeWildcardType(upperBound, lowerBound))
 
     /**
      * Return a list of [TypeDescriptor] describing all the types of the type arguments for the provided [type].
