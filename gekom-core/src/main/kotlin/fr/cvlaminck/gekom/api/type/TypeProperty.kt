@@ -1,5 +1,6 @@
 package fr.cvlaminck.gekom.api.type
 
+import fr.cvlaminck.gekom.reflect.TypeDescriptor
 import java.lang.reflect.Type
 
 /**
@@ -12,18 +13,31 @@ import java.lang.reflect.Type
  *
  * @param T Type to which this property belongs.
  * @param PT Type of the value of this property.
+ *
+ * @since 1.0.0
  */
 interface TypeProperty<in T : Any, PT : Any> {
 
     /**
      * Returns the name of the property.
+     *
+     * @since 1.0.0
      */
     val name: String
 
     /**
-     * Returns the type of the value.
+     * Return aliases that may be use to also refer to this property in addition to its name.
+     *
+     * @since 1.0.0
      */
-    val type: Type
+    val aliases: Collection<String>
+
+    /**
+     * Returns the type of the value.
+     *
+     * @since 1.0.0
+     */
+    val type: TypeDescriptor
 
     /**
      * Returns true if the property value can be read.
@@ -31,6 +45,8 @@ interface TypeProperty<in T : Any, PT : Any> {
      * A property is considered readable if one of the following condition is matched:
      * - a getter with the following signature: PT get{{capitalized name}}()
      * - a field with the name of the property.
+     *
+     * @since 1.0.0
      */
     val readable: Boolean
 
@@ -40,6 +56,8 @@ interface TypeProperty<in T : Any, PT : Any> {
      * A property is considered editable if one of the following condition is matched:
      * - a setter with the following signature: void set{{capitalized name}}(PT value)
      * - a field with the name of the property.
+     *
+     * @since 1.0.0
      */
     val editable: Boolean
 
@@ -56,6 +74,7 @@ interface TypeProperty<in T : Any, PT : Any> {
      *
      * @param obj Object from which the value will be read.
      * @return the value of the property for the provided object.
+     * @since 1.0.0
      */
     fun get(obj: T): PT
 
@@ -64,6 +83,7 @@ interface TypeProperty<in T : Any, PT : Any> {
      *
      * @param obj Object on which to set the value.
      * @param value Value to set.
+     * @since 1.0.0
      */
     fun set(obj: T, value: PT)
 }
