@@ -1,5 +1,7 @@
 package fr.cvlaminck.gekom.reflect.util;
 
+import fr.cvlaminck.gekom.reflect.type.FakeParameterizedType;
+import fr.cvlaminck.gekom.reflect.type.FakeWildcardType;
 import fr.cvlaminck.gekom.reflect.util.TypeUtils;
 import org.junit.jupiter.api.Test;
 
@@ -41,10 +43,12 @@ public class JavaTypeUtilsTest {
         assertFalse(TypeUtils.INSTANCE.equals(Collection.class, List.class));
 
         // Parameterized Type
-        // TODO Find true test. Once forged
-        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("concreteList"), getAttributeType("concreteCollection")));
-        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("concreteCollection"), getAttributeType("concreteStringCollection")));
-        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("genericExtendsCollection"), getAttributeType("genericSuperCollection")));
+        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("concreteList"), new FakeParameterizedType(JavaTypeUtilsTest.class, List.class, new Type[] {Integer.class})));
+        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("concreteCollection"), new FakeParameterizedType(JavaTypeUtilsTest.class, Collection.class, new Type[] {String.class})));
+        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("genericExtendsCollection"),
+                new FakeParameterizedType(JavaTypeUtilsTest.class, Collection.class, new Type[] {
+                        new FakeWildcardType(Integer.class, null)
+                })));
 
         // Wildcard Type
         assertTrue(TypeUtils.INSTANCE.equals(
