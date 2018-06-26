@@ -1,5 +1,6 @@
 package fr.cvlaminck.gekom.reflect.util
 
+import com.sun.tools.javah.Gen
 import java.lang.reflect.GenericArrayType
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
@@ -131,6 +132,7 @@ object TypeUtils {
         }
         return when (to) {
             is Class<*> -> isClassAssignableFrom(to, from)
+            is GenericArrayType -> isGenericArrayAssignableFrom(to, from)
             is ParameterizedType -> isParameterizedTypeAssignableFrom(to, from)
             else -> TODO()
         }
@@ -144,17 +146,17 @@ object TypeUtils {
     }
 
     private fun isGenericArrayAssignableFrom(to: GenericArrayType, from: Type): Boolean {
-        TODO()
-    }
-
-    private fun isParameterizedTypeAssignableFrom(to: ParameterizedType, from: Type): Boolean {
-        if (from !is ParameterizedType) {
+        if (!getRawType(to).isAssignableFrom(getRawType(from))) {
             return false
         }
         TODO()
     }
 
-    private fun isWildcardTypeAssignableFrom(to: WildcardType, from: Type): Boolean {
-        TODO()
+    private fun isParameterizedTypeAssignableFrom(to: ParameterizedType, from: Type): Boolean {
+        val toClass = getRawType(to)
+        if (!toClass.isAssignableFrom(getRawType(to))) {
+            return false
+        }
+        return false
     }
 }

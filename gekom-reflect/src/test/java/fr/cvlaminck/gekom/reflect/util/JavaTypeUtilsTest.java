@@ -2,12 +2,12 @@ package fr.cvlaminck.gekom.reflect.util;
 
 import fr.cvlaminck.gekom.reflect.type.FakeParameterizedType;
 import fr.cvlaminck.gekom.reflect.type.FakeWildcardType;
-import fr.cvlaminck.gekom.reflect.util.TypeUtils;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -43,10 +43,10 @@ public class JavaTypeUtilsTest {
         assertFalse(TypeUtils.INSTANCE.equals(Collection.class, List.class));
 
         // Parameterized Type
-        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("concreteList"), new FakeParameterizedType(JavaTypeUtilsTest.class, List.class, new Type[] {Integer.class})));
-        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("concreteCollection"), new FakeParameterizedType(JavaTypeUtilsTest.class, Collection.class, new Type[] {String.class})));
+        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("concreteList"), new FakeParameterizedType(JavaTypeUtilsTest.class, List.class, new Type[]{Integer.class})));
+        assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("concreteCollection"), new FakeParameterizedType(JavaTypeUtilsTest.class, Collection.class, new Type[]{String.class})));
         assertFalse(TypeUtils.INSTANCE.equals(getAttributeType("genericExtendsCollection"),
-                new FakeParameterizedType(JavaTypeUtilsTest.class, Collection.class, new Type[] {
+                new FakeParameterizedType(JavaTypeUtilsTest.class, Collection.class, new Type[]{
                         new FakeWildcardType(Integer.class, null)
                 })));
 
@@ -57,6 +57,26 @@ public class JavaTypeUtilsTest {
         assertFalse(TypeUtils.INSTANCE.equals(
                 ((ParameterizedType) getAttributeType("genericCollection")).getActualTypeArguments()[0],
                 ((ParameterizedType) getAttributeType("genericExtendsCollection")).getActualTypeArguments()[0]));
+    }
+
+    @Test
+    public void testIsClassAssignableFrom() {
+        assertFalse(TypeUtils.INSTANCE.isAssignableFrom(Integer.class, Number.class));
+        assertTrue(TypeUtils.INSTANCE.isAssignableFrom(Number.class, Integer.class));
+    }
+
+    @Test
+    public void testIsParameterizedTypeAssignableFrom() {
+        FakeParameterizedType collectionOfInteger = new FakeParameterizedType(null, Collection.class, new Type[]{Integer.class});
+        FakeParameterizedType collectionOfNumber = new FakeParameterizedType(null, Collection.class, new Type[]{Number.class});
+        FakeParameterizedType listOfInteger = new FakeParameterizedType(null, List.class, new Type[]{Integer.class});
+        FakeParameterizedType listOfNumber = new FakeParameterizedType(null, List.class, new Type[]{Number.class});
+
+        assertFalse(TypeUtils.INSTANCE.isAssignableFrom(Integer.class, collectionOfInteger));
+
+        assertTrue(TypeUtils.INSTANCE.isAssignableFrom(Collection.class, collectionOfInteger));
+        assertTrue(TypeUtils.INSTANCE.isAssignableFrom(Collection.class, listOfInteger));
+        assertTrue(TypeUtils.INSTANCE.isAssignableFrom(List.class, listOfInteger));
     }
 
     private Type getAttributeType(String attribute) throws NoSuchFieldException {
@@ -75,5 +95,13 @@ public class JavaTypeUtilsTest {
         public Collection<? extends Integer> genericExtendsCollection;
         public Collection<? super Integer> genericSuperCollection;
         public Map<? extends Integer, ?> genericExtendsMap;
+    }
+
+    static class ArrayListOfInteger extends ArrayList<Integer> {
+
+    }
+
+    static class ArrayListOfNumber extends ArrayList<Number> {
+
     }
 }
